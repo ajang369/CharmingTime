@@ -2,34 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-
-public class Item
+public class Item : MonoBehaviour
 {
-    public string itemName;             //아이템 이름
-    public int itemID;                  //아이템 고유번호
-    public string itemDes;              //아이템 설명
-    public Texture2D itemIcon;          //아이템 아이콘
+    public int itemID;      // 아이템 고유 ID값
+    public string itemName; // 아이템 이름
+    public string itemDes;  // 아이템 설명
+    public int itemCount;   // 아이템 개수
+    public Sprite itemIcon; // 아이템 아이콘
     public ItemType itemType;
-
     public enum ItemType
     {
-        Quest, Use
+        // 열거
+        Use,
+        Quest,
+        Equip
     }
 
-    public Item()
+    public Item(int ID, string Name, string Des, ItemType Type, int Count = 1)
     {
-
+        itemID = ID;
+        itemName = Name;
+        itemDes = Des;
+        itemType = Type;
+        itemCount = Count;
+        itemIcon = Resources.Load("itemIcon/" + itemID.ToString(), typeof(Sprite)) as Sprite;
     }
-
-    public Item(string name, int id, string desc, ItemType type)
+    // Start is called before the first frame update
+    void Start()
     {
-        itemName = name;
-        itemID = id;
-        itemDes = desc;
-        itemType = type;
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
-    
-
